@@ -1,6 +1,6 @@
 import { Application } from "./common/interfaces/application.interface.js";
 import { AppProvicerService } from "./common/services/app-provider.service.js";
-import { MenuBuilder } from "./common/services/menu-builder.service.js";
+import { Menu } from "./common/classes/menu.class.js";
 import { IOReadlineService } from "./io/readline-io.service.js";
 
 console.clear();
@@ -19,18 +19,16 @@ console.error("version: 0.0.0");
 console.error("author: N0M4D");
 console.log("");
 
-const readlineService: IOReadlineService = new IOReadlineService();
 const appProvicerService: AppProvicerService = new AppProvicerService();
-
-const menuBuilder: MenuBuilder = new MenuBuilder(readlineService);
-
-const index: number | undefined = await menuBuilder.create<string>(
-  "What app want to use? ",
+const menu: Menu = new Menu(
+  "What app should I execute?",
   appProvicerService.appList
 );
 
-const app: Application | undefined = appProvicerService.getByIndex(index!);
+menu.displayMenu();
+const index = await menu.getUserInput();
 
+const app: Application | undefined = appProvicerService.getByIndex(index);
 if (app) {
   app.execute();
 } else {
