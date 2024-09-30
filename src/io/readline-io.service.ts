@@ -1,20 +1,18 @@
-import * as readline from "readline";
+import * as readline from "readline/promises";
 
 export class IOReadlineService {
-  private readline: readline.Interface = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
-
   constructor() {}
+
   public async question(
     question: string,
     onResponse: (response: string) => void
   ): Promise<void> {
-    const callback = (res: string) => {
-      onResponse(res);
-      this.readline.close();
-    };
-    this.readline.question(question, callback);
+    const reader: readline.Interface = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout,
+    });
+    const response = await reader.question(question);
+    onResponse(response);
+    reader.close();
   }
 }

@@ -1,0 +1,20 @@
+import { Powergit } from "../../powergit/powergit.main.js";
+import { ProjectOpener } from "../../project-opener/project-opener.js";
+import { Application } from "../interfaces/application.interface.js";
+
+export class AppProvicerService {
+  public appList: string[] = ["Powergit", "Project Opener"];
+
+  constructor() {}
+
+  public getByIndex(index: number): Application | undefined {
+    const appListLen: number = this.appList.length;
+
+    if (index > appListLen || index < 0) {
+      return undefined;
+    }
+
+    if (index === 0) return new Powergit();
+    if (index === 1) return new ProjectOpener();
+  }
+}
