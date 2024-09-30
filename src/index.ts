@@ -1,7 +1,6 @@
 import { Application } from "./common/interfaces/application.interface.js";
 import { AppProvicerService } from "./common/services/app-provider.service.js";
 import { Menu } from "./common/classes/menu.class.js";
-import { IOReadlineService } from "./io/readline-io.service.js";
 
 console.clear();
 console.error(
@@ -18,6 +17,9 @@ ______ ________  ________ _   _______ _____  _____
 console.error("version: 0.0.0");
 console.error("author: N0M4D");
 console.log("");
+
+// get args for direct execution if available
+//const argv: string[] = process.argv.slice(2); // slice(2) removes the first two default elements
 
 const appProvicerService: AppProvicerService = new AppProvicerService();
 const menu: Menu = new Menu(
