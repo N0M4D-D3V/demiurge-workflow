@@ -1,0 +1,17 @@
+{
+  "name": "demiurge-workflow",
+  "version": "0.0.0",
+  "author": "N0M4D",
+  "description": "",
+  "homepage": "",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npx tsc",
+    "build:watch": "npx tsc -w",
+    "exec": "node dist/index.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.2"
+  }
+}
