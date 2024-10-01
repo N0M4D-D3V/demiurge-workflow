@@ -9,7 +9,9 @@
   "scripts": {
     "build": "npx tsc",
     "build:watch": "npx tsc -w",
-    "exec": "node dist/index.js"
+    "exec": "node dist/index.js",
+    "exec:powergit": "node dist/index.js powergit",
+    "exec:opener": "node dist/index.js opener"
   },
   "devDependencies": {
     "@types/node": "^22.7.4",

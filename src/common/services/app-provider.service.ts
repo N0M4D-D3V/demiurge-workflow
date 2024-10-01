@@ -3,7 +3,7 @@ import { ProjectOpener } from "../../project-opener/project-opener.js";
 import { Application } from "../interfaces/application.interface.js";
 
 export class AppProvicerService {
-  public appList: string[] = ["Powergit", "Project Opener"];
+  public appList: string[] = ["Powergit", "Opener"];
 
   constructor() {}
 
@@ -16,5 +16,13 @@ export class AppProvicerService {
 
     if (index === 0) return new Powergit();
     if (index === 1) return new ProjectOpener();
+  }
+
+  public getByName(name: string): Application | undefined {
+    const index: number = this.appList.findIndex(
+      (id) => id.toLowerCase() === name.toLowerCase()
+    );
+
+    return this.getByIndex(index);
   }
 }

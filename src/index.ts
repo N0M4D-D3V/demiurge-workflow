@@ -19,20 +19,26 @@ console.error("author: N0M4D");
 console.log("");
 
 // get args for direct execution if available
-//const argv: string[] = process.argv.slice(2); // slice(2) removes the first two default elements
-
+const argv: string[] = process.argv.slice(2); // slice(2) removes the first two default elements
 const appProvicerService: AppProvicerService = new AppProvicerService();
-const menu: Menu = new Menu(
-  "What app should I execute?",
-  appProvicerService.appList
-);
 
-menu.displayMenu();
-const index = await menu.getUserInput();
+let app: Application | undefined = undefined;
 
-const app: Application | undefined = appProvicerService.getByIndex(index);
+if (argv.length > 0) {
+  app = appProvicerService.getByName(argv[0]);
+} else {
+  const menu: Menu = new Menu(
+    "What app should I execute?",
+    appProvicerService.appList
+  );
+
+  menu.displayMenu();
+  const index = await menu.getUserInput();
+  app = appProvicerService.getByIndex(index);
+}
+
 if (app) {
   app.execute();
 } else {
-  console.warn("<!> App not found. Try again.");
+  console.error("<!> App not found <!>");
 }
