@@ -1,9 +1,10 @@
 import { Powergit } from "../../powergit/powergit.main.js";
 import { ProjectOpener } from "../../project-opener/project-opener.js";
 import { Application } from "../interfaces/application.interface.js";
+import { APPS } from "../config/config.js";
 
 export class AppProvicerService {
-  public appList: string[] = ["Powergit", "Opener"];
+  public readonly appList: string[] = APPS;
 
   constructor() {}
 
